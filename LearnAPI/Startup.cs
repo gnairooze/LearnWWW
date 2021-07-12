@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using LearnAPI.Repository;
 using LearnAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 
 namespace LearnAPI
 {
@@ -37,7 +38,9 @@ namespace LearnAPI
                                   builder =>
                                   {
                                       builder.WithOrigins("http://localhost:4200",
-                                          "https://localhost:44367");
+                                          "https://localhost:44367")
+                                      .AllowAnyMethod()
+                                      .WithHeaders(HeaderNames.ContentType); ;
                                   });
             });
 
