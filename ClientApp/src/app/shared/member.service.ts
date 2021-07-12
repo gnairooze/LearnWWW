@@ -8,7 +8,7 @@ export class MemberService {
 
   constructor(private http: HttpClient) {
   }
-  readonly _baseUrl = "https://localhost:44362/api/Member";
+  readonly _baseUrl = "https://localhost:44367/api/Member";
   formData: Member = new Member();
   list: Member[] = [];
   postMember() {
