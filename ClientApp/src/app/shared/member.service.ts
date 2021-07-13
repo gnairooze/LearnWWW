@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Member } from './member.model';
 import { HttpClient } from "@angular/common/http";
+
+import { ConfigService } from './config.service';
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
 
-  constructor(private http: HttpClient) {
+  private _baseUrl = ''; //"https://coreapi.learn/api/member";
+
+  constructor(private http: HttpClient, config: ConfigService) {
+    this._baseUrl = config.baseUrl;
   }
-  readonly _baseUrl = "https://localhost:44367/api/Member";
+
   formData: Member = new Member();
   list: Member[] = [];
   postMember() {
