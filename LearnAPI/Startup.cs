@@ -32,13 +32,15 @@ namespace LearnAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Helpers.Config.Load(Configuration);
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:4200",
-                                          "https://localhost:44367")
+                                      //builder.WithOrigins("http://localhost:4200","https://localhost:44367", "https://angular.learn")
+                                      builder.WithOrigins(Helpers.Config.AllowedOrigins.ToArray())
                                       .AllowAnyMethod()
                                       .WithHeaders(HeaderNames.ContentType); ;
                                   });
